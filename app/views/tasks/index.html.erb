@@ -1,0 +1,25 @@
+<div id="container">
+<div class="content">
+    <h1>My Tasks</h1>
+    </div>
+
+    <div class="content">
+    <ul>
+      <% @tasks.each_with_index do |task, index| %>
+        <li><%= index + 1%>
+          -
+          <%= link_to task[:title], "/task/#{task[:id]}" %>
+          -
+          <%= task[:details] %>
+          -
+          <%= link_to "edit", edit_task_path(task[:id]) %>
+          -
+          <%= link_to "delete", delete_task_path(task), method: :delete ,data: { confirm: "Are you sure?" }%></li>
+
+        <%= hidden_field_tag :id, task[:id] %>
+      <% end %>
+    </ul>
+  </div>
+  <!-- </div> -->
+  <%= link_to "Create new task", "/task/new" %>
+</div>
